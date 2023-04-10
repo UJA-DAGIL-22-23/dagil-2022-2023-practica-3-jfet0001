@@ -179,6 +179,12 @@ Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-
                     <tbody>
     `;
 
+Plantilla.plantillaTablaPersonas.cabeceraNombre = `<table width="100%" class="listado-personas">
+                <thead>
+                    <th width="100%">Nombre</th> 
+                </thead>
+                <tbody>
+`;
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
@@ -195,6 +201,11 @@ Plantilla.plantillaTablaPersonas.cuerpo = `
         
     </tr>
     `;
+Plantilla.plantillaTablaPersonas.cuerpoSoloNombre = `
+<tr title="${Plantilla.plantillaTags.ID}">
+    <td>${Plantilla.plantillaTags.NOMBRE}</td>
+</tr>
+`;
 
 // Pie de la tabla
 Plantilla.plantillaTablaPersonas.pie = `        </tbody>
@@ -238,4 +249,29 @@ Plantilla.convertirParticipacion=function(arr){
  */
 Plantilla.plantillaTablaPersonas.actualiza = function (persona) {
     return Plantilla.sustituyeTags(this.cuerpo, persona)
+}
+
+Plantilla.listarSoloNombres = function () {
+    this.recupera(this.imprimeSoloNombres);
+}
+
+Plantilla.imprimeSoloNombres = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.plantillaTablaPersonas.cabeceraNombre;
+    vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualizaSoloNombres(e))
+    msj += Plantilla.plantillaTablaPersonas.pie;
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de nombres", msj )
+
+}
+
+Plantilla.plantillaTablaPersonas.actualizaSoloNombres = function (persona) {
+    return Plantilla.sustituyeNombres(this.cuerpoSoloNombre, persona)
+}
+
+Plantilla.sustituyeNombres = function (plantilla, persona) {
+    return plantilla
+    .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
 }

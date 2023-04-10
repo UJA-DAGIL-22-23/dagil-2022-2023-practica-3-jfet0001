@@ -175,6 +175,36 @@ describe("actualiza ", function () {
         });
 });
 
+describe("actualizaSoloNombres ", function () {
+    let d={
+        "data": {
+          "nombre": "Juan Francisco Escudero Toribio",
+          "fecha_nacimiento": {
+            "dia": 30,
+            "mes": 6,
+            "año": 2002
+          },
+          "nacionalidad": "español",
+          "peso": 80,
+          "altura": 196,
+          "participacionJJOO": [
+            2002,
+            2006,
+            2008
+          ],
+          "federado": true,
+          "peso_espada": 600,
+          "sexo": "masculino",
+          "victorias": 43
+        }
+      }
+    it("debería devolver una persona correcta",
+        function () {
+            let msj = Plantilla.plantillaTablaPersonas.actualizaSoloNombres(d)
+            expect(msj.includes(d.data.nombre)).toBeTrue();
+        });
+});
+
 /*
 IMPORTANTE
 ==========
