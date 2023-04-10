@@ -123,6 +123,57 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
+describe("convertirParticipacion ", function () {
+    let part=["2002,-2002"]
+    let msj=Plantilla.convertirParticipacion(part)
+    it("debería devolver texto no vacio y dentro del rango",
+        function () {
+            expect(msj.length>0).toBeTrue();
+            expect(msj[0]>0).toBeTrue();
+            expect(msj[1]>0).toBeFalse();
+        });
+});
+
+describe("actualiza ", function () {
+    let d={
+        "data": {
+          "nombre": "Juan Francisco Escudero Toribio",
+          "fecha_nacimiento": {
+            "dia": 30,
+            "mes": 6,
+            "año": 2002
+          },
+          "nacionalidad": "español",
+          "peso": 80,
+          "altura": 196,
+          "participacionJJOO": [
+            2002,
+            2006,
+            2008
+          ],
+          "federado": true,
+          "peso_espada": 600,
+          "sexo": "masculino",
+          "victorias": 43
+        }
+      }
+    it("debería devolver una persona correcta",
+        function () {
+            let msj = Plantilla.plantillaTablaPersonas.actualiza(d)
+            expect(msj.includes(d.data.nombre)).toBeTrue();
+            expect(msj.includes(d.data.fecha_nacimiento.año)).toBeTrue();
+            expect(msj.includes(d.data.fecha_nacimiento.dia)).toBeTrue();
+            expect(msj.includes(d.data.fecha_nacimiento.mes)).toBeTrue();
+            expect(msj.includes(d.data.nacionalidad)).toBeTrue();
+            expect(msj.includes(d.data.peso)).toBeTrue();
+            expect(msj.includes(d.data.altura)).toBeTrue();
+            expect(d.data.participacionJJOO.length>0).toBeTrue();
+            expect(d.data.federado==true||d.data.federado==false).toBeTrue();
+            expect(msj.includes(d.data.peso_espada)).toBeTrue();
+            expect(msj.includes(d.data.sexo)).toBeTrue();
+            expect(msj.includes(d.data.victorias)).toBeTrue();
+        });
+});
 
 /*
 IMPORTANTE

@@ -33,6 +33,17 @@ router.get("/acercade", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve todas las personas que hay en la BBDD
+ */
+router.get("/getTodos", async (req, res) => {
+    try {
+        await callbacks.getTodos(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 
 /**

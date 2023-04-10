@@ -49,15 +49,15 @@ describe('Servidor PLANTILLA:', () => {
    * Tests para acceso a la BBDD
    */
   describe('Acceso a BBDD:', () => {
-    it('Devuelve ¿¿¿ VALOR ESPERADO ??? al consultar mediante test_db', (done) => {
+    it('Devuelve 10 elementos al consultar mediante test_db', (done) => {
       supertest(app)
-        .get('/test_db')
+        .get('/getTodos')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function (res) {
           //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
-          assert(res.body.data[0].data.hasOwnProperty('¿¿¿ PROPIEDAD ???'));
-          assert(res.body.data[0].data.nombre === "¿¿¿ VALOR ESPERADO ???");
+          assert(res.body.hasOwnProperty('data'));
+          assert(res.body.data.length ===10 );
 
         })
         .end((error) => { error ? done.fail(error) : done(); }

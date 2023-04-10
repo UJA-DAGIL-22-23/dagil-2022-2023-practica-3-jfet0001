@@ -13,6 +13,9 @@ let Frontend = {};
 Frontend.API_GATEWAY = "http://localhost:8001"
 
 /// Algunas constantes relacionadas con CSS y HTML
+Frontend.CLASS_MOSTRAR = "mostrar"
+Frontend.CLASS_OCULTAR = "ocultar"
+
 Frontend.ID_SECCION_PRINCIPAL = "seccion-principal"
 Frontend.ID_SECCION_PRINCIPAL_TITULO = "seccion-principal-titulo"
 Frontend.ID_SECCION_PRINCIPAL_CONTENIDO = "seccion-principal-contenido"
