@@ -440,16 +440,26 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 ## Seguimiento de la práctica
 # Incremento 1
 En el incremento 1 se ha procedido a hacer tres historias de usuario, las cuales son:
+
 01->Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+
 04->Ver un listado con todos los datos de todos los jugadores/equipos
+
 02->Ver un listado solo con los nombres de todos los jugadores/equipos.
+
 Captura de Trello INICIAL
+
 ![Captura Trello INICIAL ](./assets/img/trelloInc1.png)
+
 Captura de Trello FINAL
-(./assets/img/trelloFinal1.png)
+
+![Captura Trello FINAL ](./assets/img/trelloFinal1.png)
+
 Historia de usuario 01
-(./assets/img/acercaDe.png)
+![HISTORIA USUARIO 01 ](./assets/img/acercaDe.png)
+
 Historia de usuario 04
-(./assets/img/datos.png)
+![HISTORIA USUARIO 04 ](./assets/img/datos.png)
+
 Historia de usuario 02
-(./assets/img/nombres.png)
+![HISTORIA USUARIO 02 ](./assets/img/nombres.png)
