@@ -134,29 +134,35 @@ describe("convertirParticipacion ", function () {
         });
 });
 
-/*describe("actualiza ", function () {
+describe("actualiza ", function () {
     let d={
-        "data": {
-          "nombre": "Juan Francisco Escudero Toribio",
-          "fecha_nacimiento": {
-            "dia": 30,
-            "mes": 6,
-            "año": 2002
-          },
-          "nacionalidad": "español",
-          "peso": 80,
-          "altura": 196,
-          "participacionJJOO": [
-            2002,
-            2006,
-            2008
-          ],
-          "federado": true,
-          "peso_espada": 600,
-          "sexo": "masculino",
-          "victorias": 43
-        }
-      }
+        ref: {
+            "@ref": {
+                id: "ref persona 1"
+            }
+        },
+        data: {
+            "nombre": "Juan Francisco Escudero Toribio",
+            "fecha_nacimiento": {
+                "dia": 30,
+                "mes": 6,
+                "año": 2002
+            },
+            "nacionalidad": "español",
+            "peso": 80,
+            "altura": 196,
+            "participacionJJOO": [
+                2002,
+                2006,
+                2008
+            ],
+            "federado": true,
+            "peso_espada": 600,
+            "sexo": "masculino",
+            "victorias": 43
+            }
+        
+    }
     it("debería devolver una persona correcta",
         function () {
             let msj = Plantilla.plantillaTablaPersonas.actualiza(d)
@@ -174,7 +180,7 @@ describe("convertirParticipacion ", function () {
             expect(msj.includes(d.data.sexo)).toBeTrue();
             expect(msj.includes(d.data.victorias)).toBeTrue();
         });
-});*/
+});
 
 describe("actualizaSoloNombres ", function () {
     let d={
@@ -469,7 +475,7 @@ describe("Persona como tabla ", function () {
     it("debería devolver correctamente la persona como una tabla",
         function () {
             console.log(d.data)
-            /*const msjEsperado = Plantilla.plantillaTablaPersonas.cabecera
+            const msjEsperado = Plantilla.plantillaTablaPersonas.cabecera
             + Plantilla.plantillaTablaPersonas.actualiza(d.data)
             + Plantilla.plantillaTablaPersonas.pie;
             
