@@ -472,7 +472,7 @@ Captura de Trello INICIAL Incremento 2
 
 Captura de Trello FINAL Incremento 2
 
-![Captura Trello FINAL ](./assets/img/finTrelloFinal2.png)
+![Captura Trello FINAL ](./assets/img/finTrelloInc2.png)
 
 Historia de usuario 03
 
