@@ -484,8 +484,8 @@ describe("Persona como tabla ", function () {
             expect(msjGenerado).toBe(msjEsperado);
         });
 });
-*/
 
+*/
 describe("Persona almacenada ", function () {
     const persona={
         "data": {

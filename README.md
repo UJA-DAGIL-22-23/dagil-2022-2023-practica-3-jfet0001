@@ -448,15 +448,16 @@ En el incremento 1 se ha procedido a hacer tres historias de usuario, las cuales
 
 02->Ver un listado solo con los nombres de todos los jugadores/equipos.
 
-Captura de Trello INICIAL
+Captura de Trello INICIAL Incremento 1
 
 ![Captura Trello INICIAL ](./assets/img/trelloInc1.png)
 
-Captura de Trello FINAL
+Captura de Trello FINAL Incremento 1
 
 ![Captura Trello FINAL ](./assets/img/trelloFinal1.png)
 
 Historia de usuario 01
+
 ![HISTORIA USUARIO 01 ](./assets/img/acercaDe.png)
 
 Historia de usuario 04
@@ -464,3 +465,21 @@ Historia de usuario 04
 
 Historia de usuario 02
 ![HISTORIA USUARIO 02 ](./assets/img/nombres.png)
+
+Captura de Trello INICIAL Incremento 2
+
+![Captura Trello INICIAL ](./assets/img/inicioTrelloInc2.png)
+
+Captura de Trello FINAL Incremento 2
+
+![Captura Trello FINAL ](./assets/img/finTrelloFinal2.png)
+
+Historia de usuario 03
+
+![HISTORIA USUARIO 03 ](./assets/img/hu3.png)
+
+Historia de usuario 06
+![HISTORIA USUARIO 06 ](./assets/img/hu6.png)
+
+Historia de usuario 08
+![HISTORIA USUARIO 08 ](./assets/img/hu8.png)
