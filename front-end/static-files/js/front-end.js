@@ -35,6 +35,7 @@ Frontend.Article.actualizar = function (titulo, contenido) {
     // Si son nulos, los sustituyo por la cadena vacía
     titulo = titulo || ""
     contenido = contenido || ""
+
     // Sustituyo el título y el contenido del articulo
     document.getElementById( Frontend.ID_SECCION_PRINCIPAL_TITULO ).innerHTML = titulo
     document.getElementById( Frontend.ID_SECCION_PRINCIPAL_CONTENIDO ).innerHTML = contenido

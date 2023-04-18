@@ -30,7 +30,20 @@
             title="Llama a la ruta /procesarNombres del MS Plantilla">Procesar Datos Personas</a>
         <a href="javascript:Plantilla.listarSoloNombres()" class="opcion-principal"
             title="Llama a la ruta /procesarNombres del MS Plantilla">Procesar Nombres</a>
+        <a href="javascript:Plantilla.listarSoloNombresOrdenados()" class="opcion-principal"
+            title="Llama a la ruta /procesarNombresOrdenados del MS Plantilla">Procesar Nombres Ordenados</a>
     </nav>
+    <form>
+        <label>Buscar por nombre:</label>
+        <input type="text" id="search" name="search">
+        <button type="button" onclick="buscar()">Buscar</button>
+      </form>
+      <script>
+        function buscar() {
+          var searchTerm = document.getElementById("search").value;
+          Plantilla.listarBuscar(searchTerm);
+        }
+      </script>
 
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 

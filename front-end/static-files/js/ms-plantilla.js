@@ -17,7 +17,7 @@ Plantilla.datosDescargadosNulos = {
     email: "",
     fecha: ""
 }
-
+Plantilla.personaMostrada = null
 
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
@@ -147,6 +147,7 @@ Plantilla.imprime = function (vector) {
 }
 
 Plantilla.plantillaTags = {
+    "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
     "FECHA_NACIMIENTO": "### FECHA_NACIMIENTO ###",
     "NACIONALIDAD": "### NACIONALIDAD ###",
@@ -164,18 +165,20 @@ Plantilla.plantillaTablaPersonas = {}
 
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
-                    <thead>
+                    <tr>
+                        <th width="10%">ID</th>
                         <th width="10%">Nombre</th>
-                        <th width="10%">Fecha_nacimiento</th>
+                        <th  width="10%">Fecha_nacimiento</th>
                         <th width="10%">Nacionalidad</th>
                         <th width="10%">Peso</th>
                         <th width="10%">Altura</th>
                         <th width="10%">ParticipacionJJOO</th>
                         <th width="10%">Federado</th>
                         <th width="10%">Peso_espada</th>
-                        <th width="10%">Sexo</th>
-                        <th width="10%">Victorias</th>
-                    </thead>
+                        <th width="5%">Sexo</th>
+                        <th width="5%">Victorias</th>
+                        <th width="10%">Acciones</th>
+                    </tr>
                     <tbody>
     `;
 
@@ -188,6 +191,7 @@ Plantilla.plantillaTablaPersonas.cabeceraNombre = `<table width="100%" class="li
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
+        <td>${Plantilla.plantillaTags.ID}</td>
         <td>${Plantilla.plantillaTags.NOMBRE}</td>
         <td>${Plantilla.plantillaTags.FECHA_NACIMIENTO}</td>
         <td>${Plantilla.plantillaTags.NACIONALIDAD}</td>
@@ -198,6 +202,9 @@ Plantilla.plantillaTablaPersonas.cuerpo = `
         <td>${Plantilla.plantillaTags.PESO_ESPADA}</td>
         <td>${Plantilla.plantillaTags.SEXO}</td>
         <td>${Plantilla.plantillaTags.VICTORIAS}</td>
+        <td>
+                    <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
         
     </tr>
     `;
@@ -208,9 +215,7 @@ Plantilla.plantillaTablaPersonas.cuerpoSoloNombre = `
 `;
 
 // Pie de la tabla
-Plantilla.plantillaTablaPersonas.pie = `        </tbody>
-             </table>
-             `;
+Plantilla.plantillaTablaPersonas.pie = `</tbody></table>`;
 
 /**
  * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
@@ -223,7 +228,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
     ${persona.data.fecha_nacimiento.mes}/${persona.data.fecha_nacimiento.año}`
 
     return plantilla
-        
+        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.FECHA_NACIMIENTO, 'g'), fechaNacimiento)
         .replace(new RegExp(Plantilla.plantillaTags.NACIONALIDAD, 'g'), persona.data.nacionalidad)
@@ -251,8 +256,26 @@ Plantilla.plantillaTablaPersonas.actualiza = function (persona) {
     return Plantilla.sustituyeTags(this.cuerpo, persona)
 }
 
+Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idPersona
+        const response = await fetch(url);
+        if (response) {
+            const persona = await response.json()
+            callBackFn(persona)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
+
 Plantilla.listarSoloNombres = function () {
     this.recupera(this.imprimeSoloNombres);
+}
+
+Plantilla.listarSoloNombresOrdenados = function () {
+    this.recupera(this.imprimeSoloNombresOrdenados);
 }
 
 Plantilla.imprimeSoloNombres = function (vector) {
@@ -264,7 +287,19 @@ Plantilla.imprimeSoloNombres = function (vector) {
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar( "Listado de nombres", msj )
+}
 
+Plantilla.imprimeSoloNombresOrdenados = function (vector) {
+    // Para comprobar lo que hay en vector
+    let msj = "";
+    vector.sort((x, y) => x.data.nombre.localeCompare(y.data.nombre));
+    msj += Plantilla.plantillaTablaPersonas.cabeceraNombre;
+    vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualizaSoloNombres(e))
+    msj += Plantilla.plantillaTablaPersonas.pie;
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de nombres", msj )
+    
 }
 
 Plantilla.plantillaTablaPersonas.actualizaSoloNombres = function (persona) {
@@ -274,4 +309,74 @@ Plantilla.plantillaTablaPersonas.actualizaSoloNombres = function (persona) {
 Plantilla.sustituyeNombres = function (plantilla, persona) {
     return plantilla
     .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
+}
+
+Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idPersona
+        const response = await fetch(url);
+        if (response) {
+            const persona = await response.json()
+            callBackFn(persona)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+    }
+}
+
+Plantilla.personaComoTabla = function (persona) {
+    return Plantilla.plantillaTablaPersonas.cabecera
+        + Plantilla.plantillaTablaPersonas.actualiza(persona)
+        + Plantilla.plantillaTablaPersonas.pie;
+}
+
+Plantilla.imprimeUnaPersona = function (persona) {
+    // console.log(persona) // Para comprobar lo que hay en vector
+    let msj = Plantilla.personaComoTabla(persona);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Mostrar una persona", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(persona)
+}
+
+Plantilla.almacenaDatos = function (persona) {
+    Plantilla.personaMostrada = persona;
+}
+
+Plantilla.mostrar = function (idPersona) {
+    this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
+}
+
+
+
+Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
+    let response = null
+    console.log(nombre);
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Filtro el vector de personas para obtener solo la que tiene el nombre pasado como parámetro
+    let vectorPersonas = null
+    if (response) {
+        vectorPersonas = await response.json()
+        //console.log(vectorPersonas.data[1].data)     
+        const filtro = vectorPersonas.data.filter(persona => persona.data.nombre === nombre)
+        console.log(filtro)        
+        callBackFn(filtro)
+    }
+}
+
+Plantilla.listarBuscar = function (search) {
+    this.recuperaBuscar(this.imprime,search);
 }

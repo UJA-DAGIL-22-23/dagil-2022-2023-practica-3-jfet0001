@@ -60,17 +60,6 @@ const CB_MODEL_SELECTS = {
             res.status(500).json({ error: error.description })
         }
     },
-
-}
-
-
-
-// CALLBACKS ADICIONALES
-
-/**
- * Callbacks adicionales. Fundamentalmente para comprobar que el ms funciona.
- */
-const CB_OTHERS = {
     /**
      * Método para obtener todas las personas de la BBDD.
      * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
@@ -92,6 +81,32 @@ const CB_OTHERS = {
             CORS(res).status(500).json({ error: error.description })
         }
     },
+    getPorId: async (req, res) => {
+        try {
+            // console.log( "getPorId req", req.params.idPersona ) // req.params contiene todos los parámetros de la llamada
+            let persona = await client.query(
+                q.Get(q.Ref(q.Collection(COLLECTION), req.params.idPersona))
+            )
+            console.log( persona ) // Para comprobar qué se ha devuelto en persona
+            CORS(res)
+                .status(200)
+                .json(persona)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+}
+
+
+
+// CALLBACKS ADICIONALES
+
+/**
+ * Callbacks adicionales. Fundamentalmente para comprobar que el ms funciona.
+ */
+const CB_OTHERS = {
+    
     /**
      * Devuelve un mensaje indicando que se ha accedido a la home del microservicio
      * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 

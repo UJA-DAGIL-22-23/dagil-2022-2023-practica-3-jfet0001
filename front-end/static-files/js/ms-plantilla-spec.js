@@ -134,7 +134,7 @@ describe("convertirParticipacion ", function () {
         });
 });
 
-describe("actualiza ", function () {
+/*describe("actualiza ", function () {
     let d={
         "data": {
           "nombre": "Juan Francisco Escudero Toribio",
@@ -160,6 +160,7 @@ describe("actualiza ", function () {
     it("debería devolver una persona correcta",
         function () {
             let msj = Plantilla.plantillaTablaPersonas.actualiza(d)
+
             expect(msj.includes(d.data.nombre)).toBeTrue();
             expect(msj.includes(d.data.fecha_nacimiento.año)).toBeTrue();
             expect(msj.includes(d.data.fecha_nacimiento.dia)).toBeTrue();
@@ -173,7 +174,7 @@ describe("actualiza ", function () {
             expect(msj.includes(d.data.sexo)).toBeTrue();
             expect(msj.includes(d.data.victorias)).toBeTrue();
         });
-});
+});*/
 
 describe("actualizaSoloNombres ", function () {
     let d={
@@ -205,6 +206,415 @@ describe("actualizaSoloNombres ", function () {
         });
 });
 
+describe("Pie table ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.plantillaTablaPersonas.pie).toBe("</tbody></table>");
+        });
+});
+
+describe("Cabecera Tabla ", function () {
+    const plantillaEsperada = `<table width="100%" class="listado-personas">
+                    <tr>
+                        <th width="10%">ID</th>
+                        <th width="10%">Nombre</th>
+                        <th  width="10%">Fecha_nacimiento</th>
+                        <th width="10%">Nacionalidad</th>
+                        <th width="10%">Peso</th>
+                        <th width="10%">Altura</th>
+                        <th width="10%">ParticipacionJJOO</th>
+                        <th width="10%">Federado</th>
+                        <th width="10%">Peso_espada</th>
+                        <th width="5%">Sexo</th>
+                        <th width="5%">Victorias</th>
+                        <th width="10%">Acciones</th>
+                    </tr>
+                    <tbody>
+    `;
+    it("debería devolver las etiquetas HTML para cabecera de tabla",
+        function () {
+            const plantillaGenerada = Plantilla.plantillaTablaPersonas.cabecera;
+            expect(plantillaGenerada).toBe(plantillaEsperada);
+        });
+});
+
+describe("Cabecera Tabla Solo Nombres ", function () {
+    const plantillaEsperada = `<table width="100%" class="listado-personas">
+                <thead>
+                    <th width="100%">Nombre</th> 
+                </thead>
+                <tbody>
+`;
+    it("debería devolver las etiquetas HTML para cabecera de tabla de solo nombres",
+        function () {
+            const plantillaGenerada = Plantilla.plantillaTablaPersonas.cabeceraNombre;
+            expect(plantillaGenerada).toBe(plantillaEsperada);
+        });
+});
+
+describe("Imprime Solo Nombres ", function () {
+    const vector= [
+        {
+            ref: {
+                "@ref": {
+                    id: "ref persona 1"
+                }
+            },
+            data: {
+                nombre: "Nombre persona 1"
+            }
+        },
+        {
+            ref: {
+                "@ref": {
+                    id: "ref persona 2"
+                }
+            },
+            data: {
+                nombre: "Nombre persona 2"
+            }
+        }
+      ];
+      const plantillaEsperada = 
+    `<table width="100%" class="listado-personas">
+                <thead>
+                    <tr><th width="100%">Nombre</th> 
+                </tr></thead>
+                <tbody>
+
+<tr title="### ID ###">
+    <td>Nombre persona 1</td>
+</tr>
+
+<tr title="### ID ###">
+    <td>Nombre persona 2</td>
+</tr>
+</tbody></table>`;
+    it("debería devolver correctamente solo los nombres",
+        function () {
+            Plantilla.imprimeSoloNombres(vector);
+            let tit=elementoContenido.innerHTML
+            expect(elementoTitulo.innerHTML).toBe("Listado de nombres");
+            expect(elementoContenido.innerHTML).toBe(plantillaEsperada);
+        });
+});
+
+describe("Imprime Solo Nombres Ordenados", function () {
+    const vector= [
+        {
+            ref: {
+                "@ref": {
+                    id: "ref persona 1"
+                }
+            },
+            data: {
+                nombre: "Gema"
+            }
+        },
+        {
+            ref: {
+                "@ref": {
+                    id: "ref persona 2"
+                }
+            },
+            data: {
+                nombre: "Ana"
+            }
+        }
+      ];
+      const plantillaEsperada = 
+    `<table width="100%" class="listado-personas">
+                <thead>
+                    <tr><th width="100%">Nombre</th> 
+                </tr></thead>
+                <tbody>
+
+<tr title="### ID ###">
+    <td>Ana</td>
+</tr>
+
+<tr title="### ID ###">
+    <td>Gema</td>
+</tr>
+</tbody></table>`;
+    it("debería devolver correctamente solo los nombres",
+        function () {
+            Plantilla.imprimeSoloNombresOrdenados(vector);
+            let tit=elementoContenido.innerHTML
+            expect(elementoTitulo.innerHTML).toBe("Listado de nombres");
+            expect(elementoContenido.innerHTML).toBe(plantillaEsperada);
+        });
+});
+/*
+describe("Imprime", function () {
+    const vector= [
+        {
+            ref: {
+                "@ref": {
+                    id: "ref persona 1"
+                }
+            },
+            data: {
+                "nombre": "Juan Francisco Escudero Toribio",
+                "fecha_nacimiento": {
+                    "dia": 30,
+                    "mes": 6,
+                    "año": 2002
+                },
+                "nacionalidad": "español",
+                "peso": 80,
+                "altura": 196,
+                "participacionJJOO": [
+                    2002,
+                    2006,
+                    2008
+                ],
+                "federado": true,
+                "peso_espada": 600,
+                "sexo": "masculino",
+                "victorias": 43
+                }
+            
+        }
+        
+      ];
+      const plantillaEsperada = `<table width="100%" class="listado-personas">
+                    <tbody><tr>
+                        <th width="10%">ID</th>
+                        <th width="10%">Nombre</th>
+                        <th  width="10%">Fecha_nacimiento</th>
+                        <th width="10%">Nacionalidad</th>
+                        <th width="10%">Peso</th>
+                        <th width="10%">Altura</th>
+                        <th width="10%">ParticipacionJJOO</th>
+                        <th width="10%">Federado</th>
+                        <th width="10%">Peso_espada</th>
+                        <th width="5%">Sexo</th>
+                        <th width="5%">Victorias</th>
+                        <th width="10%">Acciones</th>
+                    </tr>
+                    </tbody><tbody>
+
+    <tr title="ref persona 1">
+        <td>ref persona 1</td>
+        <td>Juan Francisco Escudero Toribio</td>
+        <td>30/
+    6/2002</td>
+        <td>español</td>
+        <td>80</td>
+        <td>196</td>
+        <td>2002 2006 2008 </td>
+        <td>SI</td>
+        <td>600</td>
+        <td>masculino</td>
+        <td>43</td>
+        <td>
+                    <div><a href="javascript:Plantilla.mostrar('ref persona 1')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
+    
+    </tr>
+    </tbody></table>
+    `;
+    it("debería devolver correctamente todos los datos del vector de personas",
+        function () {
+            Plantilla.imprime(vector);
+            let tit=elementoContenido.innerHTML
+            expect(elementoTitulo.innerHTML).toBe("Listado de nombres");
+            expect(elementoContenido.innerHTML).toBe(plantillaEsperada);
+            console.log(elementoContenido.innerHTML)
+        });
+});
+*/
+/*
+describe("Persona como tabla ", function () {
+    let d={
+        "data": {
+          "nombre": "Juan Francisco Escudero Toribio",
+          "fecha_nacimiento": {
+            "dia": 30,
+            "mes": 6,
+            "año": 2002
+          },
+          "nacionalidad": "español",
+          "peso": 80,
+          "altura": 196,
+          "participacionJJOO": [
+            2002,
+            2006,
+            2008
+          ],
+          "federado": true,
+          "peso_espada": 600,
+          "sexo": "masculino",
+          "victorias": 43
+        }
+      }
+    it("debería devolver correctamente la persona como una tabla",
+        function () {
+            const msjEsperado = Plantilla.plantillaTablaPersonas.cabecera
+            + Plantilla.plantillaTablaPersonas.actualiza(d.data)
+            + Plantilla.plantillaTablaPersonas.pie;
+            const msjGenerado = Plantilla.personaComoTabla(d.data);
+            expect(msjGenerado).toBe(msjEsperado);
+        });
+});*/
+
+
+describe("Persona almacenada ", function () {
+    const persona={
+        "data": {
+          "nombre": "Juan Francisco Escudero Toribio",
+          "fecha_nacimiento": {
+            "dia": 30,
+            "mes": 6,
+            "año": 2002
+          },
+          "nacionalidad": "español",
+          "peso": 80,
+          "altura": 196,
+          "participacionJJOO": [
+            2002,
+            2006,
+            2008
+          ],
+          "federado": true,
+          "peso_espada": 600,
+          "sexo": "masculino",
+          "victorias": 43
+        }
+      }
+    it("debe almacenar los datos de la persona en la variable personaMostrada",
+        function () {
+            Plantilla.almacenaDatos(persona);
+            expect(Plantilla.personaMostrada).toBe(persona);
+        });
+});
+
+describe("CuerpoSoloNombre", function () {
+    const expected = `
+<tr title="### ID ###">
+    <td>### NOMBRE ###</td>
+</tr>
+`;
+    it("debe tener el formato correcto",
+        function () {
+            expect(Plantilla.plantillaTablaPersonas.cuerpoSoloNombre).toBe(expected);
+        });
+});
+
+describe("Cuerpo", function () {
+    const expected = `
+    <tr title="### ID ###">
+        <td>### ID ###</td>
+        <td>### NOMBRE ###</td>
+        <td>### FECHA_NACIMIENTO ###</td>
+        <td>### NACIONALIDAD ###</td>
+        <td>### PESO ###</td>
+        <td>### ALTURA ###</td>
+        <td>### PARTICIPACIONJJOO ###</td>
+        <td>### FEDERADO ###</td>
+        <td>### PESO_ESPADA ###</td>
+        <td>### SEXO ###</td>
+        <td>### VICTORIAS ###</td>
+        <td>
+                    <div><a href="javascript:Plantilla.mostrar('### ID ###')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
+        
+    </tr>
+    `;
+    it("debe tener el formato correcto",
+        function () {
+            expect(Plantilla.plantillaTablaPersonas.cuerpo).toBe(expected);
+        });
+});
+
+describe('Plantilla.sustituyeNombres', function () {
+    it('debería reemplazar todos los marcadores de posición de nombre en la plantilla', function () {
+        PlantillapW = `
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td>${Plantilla.plantillaTags.NOMBRE}</td>
+            </tr>
+            `;
+        PlantillaEsperado = `
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td>"Juan Francisco Escudero Toribio"</td>
+            </tr>
+            `;
+        const persona={
+            "data": {
+              "nombre": "Juan Francisco Escudero Toribio",
+              "fecha_nacimiento": {
+                "dia": 30,
+                "mes": 6,
+                "año": 2002
+              },
+              "nacionalidad": "español",
+              "peso": 80,
+              "altura": 196,
+              "participacionJJOO": [
+                2002,
+                2006,
+                2008
+              ],
+              "federado": true,
+              "peso_espada": 600,
+              "sexo": "masculino",
+              "victorias": 43
+            }
+          }
+        let resultado = Plantilla.sustituyeNombres(PlantillapW, persona)
+        expect(resultado.includes("Juan Francisco Escudero Toribio")).toBeTrue();
+      })
+  })
+
+describe('Plantilla.sustituyeTags', function () {
+    let plantilla = `
+<tr title="${Plantilla.plantillaTags.ID}">
+    <td>${Plantilla.plantillaTags.NOMBRE}</td>
+    <td>${Plantilla.plantillaTags.FECHA_NACIMIENTO}</td>
+    <td>${Plantilla.plantillaTags.NACIONALIDAD}</td>
+    <td>${Plantilla.plantillaTags.PESO}</td>
+    <td>${Plantilla.plantillaTags.ALTURA}</td>
+    <td>${Plantilla.plantillaTags.PARTICIPACIONJJOO}</td>
+    <td>${Plantilla.plantillaTags.FEDERADO}</td>
+    <td>${Plantilla.plantillaTags.PESO_ESPADA}</td>
+    <td>${Plantilla.plantillaTags.SEXO}</td>
+    <td>${Plantilla.plantillaTags.VICTORIAS}</td>
+</tr>
+`;
+let persona = {
+    ref: {'@ref': {id: '123456'}},
+    data: {
+        nombre: 'Juan',
+        fecha_nacimiento: {
+            dia: 12,
+            mes: 3,
+            año: 1990
+        },
+        nacionalidad: 'Española',
+        peso: 75,
+        altura: 1.80,
+        participacionJJOO: [2022],
+        federado: true,
+        peso_espada: 80,
+        sexo: 'Masculino',
+        victorias: 15
+    }
+};
+    it('debería reemplazar todos los marcadores de posición de nombre en la plantilla', function () {
+        let resultadoObtenido = Plantilla.sustituyeTags(plantilla, persona);
+        expect(resultadoObtenido.includes("123456")).toBeTrue();
+        expect(resultadoObtenido.includes("Juan")).toBeTrue();
+        expect(resultadoObtenido.includes("Española")).toBeTrue();
+        expect(resultadoObtenido.includes("75")).toBeTrue();
+        expect(resultadoObtenido.includes(1.80)).toBeTrue();
+        expect(resultadoObtenido.includes("2022")).toBeTrue();
+        expect(resultadoObtenido.includes("SI")).toBeTrue();
+        expect(resultadoObtenido.includes("80")).toBeTrue();
+        expect(resultadoObtenido.includes("Masculino")).toBeTrue();
+        expect(resultadoObtenido.includes("15")).toBeTrue();
+      })
+  })
 /*
 IMPORTANTE
 ==========
