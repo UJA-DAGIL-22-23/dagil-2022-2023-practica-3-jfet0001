@@ -352,9 +352,9 @@ Plantilla.mostrar = function (idPersona) {
 
 
 
-Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
+Plantilla.recuperaBuscar = async function (callBackFn, nombre,tipo) {
     let response = null
-    console.log(nombre);
+    //console.log(nombre);
     // Intento conectar con el microservicio proyectos
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
@@ -370,13 +370,31 @@ Plantilla.recuperaBuscar = async function (callBackFn, nombre) {
     let vectorPersonas = null
     if (response) {
         vectorPersonas = await response.json()
-        //console.log(vectorPersonas.data[1].data)     
-        const filtro = vectorPersonas.data.filter(persona => persona.data.nombre === nombre)
-        console.log(filtro)        
+        
+        var ruta="."+tipo
+        console.log(ruta)  
+        var filtro
+        if(tipo=="nacionalidad"){
+            filtro = vectorPersonas.data.filter(persona => persona.data.nacionalidad === nombre)
+        }else{
+            if(tipo=="nombre"){
+                filtro = vectorPersonas.data.filter(persona => persona.data.nombre === nombre)
+            }else{
+                if(tipo=="altura"){
+                    filtro = vectorPersonas.data.filter(persona => persona.data.altura > nombre)
+                }else{
+                    filtro = vectorPersonas.data.filter(persona => persona.data.victorias > nombre)
+                }
+                
+            }
+        }
+            
+        
+        //console.log(filtro)        
         callBackFn(filtro)
     }
 }
 
-Plantilla.listarBuscar = function (search) {
-    this.recuperaBuscar(this.imprime,search);
+Plantilla.listarBuscar = function (search,tipo) {
+    this.recuperaBuscar(this.imprime,search,tipo);
 }

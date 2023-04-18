@@ -33,6 +33,7 @@
         <a href="javascript:Plantilla.listarSoloNombresOrdenados()" class="opcion-principal"
             title="Llama a la ruta /procesarNombresOrdenados del MS Plantilla">Procesar Nombres Ordenados</a>
     </nav>
+    <br></br>
     <form>
         <label>Buscar por nombre:</label>
         <input type="text" id="search" name="search">
@@ -40,11 +41,52 @@
       </form>
       <script>
         function buscar() {
+            var tipo= "nombre";
           var searchTerm = document.getElementById("search").value;
-          Plantilla.listarBuscar(searchTerm);
+          Plantilla.listarBuscar(searchTerm,tipo);
         }
       </script>
+        <form class="formulario">
+            <label>Buscar por nacionalidad:</label>
+            <input type="text" id="nac" name="search">
+            <button type="button" onclick="buscarNac()">Buscar</button>
+        </form>
+        <script>
+            function buscarNac() {
+            var tipo= "nacionalidad";
+            var searchTerm = document.getElementById("nac").value;
+            Plantilla.listarBuscar(searchTerm,tipo);
+          }
+        </script>
 
+        <br></br>
+        <form class="formulario">
+            <label>Buscar usuarios cuya altura sea mayor que la introducida:</label>
+            <input type="text" id="altu" name="search">
+            <button type="button" onclick="buscarMasAltos()">Buscar</button>
+        </form>
+        <script>
+            function buscarMasAltos() {
+            var tipo= "altura";
+            var searchTerm = document.getElementById("altu").value;
+            Plantilla.listarBuscar(searchTerm,tipo);
+          }
+        </script>
+
+        <br></br>
+        <form class="formulario">
+            <label>Buscar usuarios que tengan mas victorias de las escritas:</label>
+            <input type="text" id="vic" name="search">
+            <button type="button" onclick="buscarMasVict()">Buscar</button>
+        </form>
+        <script>
+            function buscarMasVict() {
+            var tipo= "victorias";
+            var searchTerm = document.getElementById("vic").value;
+            Plantilla.listarBuscar(searchTerm,tipo);
+        }
+        </script>
+        
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 
         Todos los apartados de este article se rellenarán con funciones en Javascript
