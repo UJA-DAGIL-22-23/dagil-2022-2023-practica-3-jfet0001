@@ -483,3 +483,31 @@ Historia de usuario 06
 
 Historia de usuario 08
 ![HISTORIA USUARIO 08 ](./assets/img/hu8.png)
+
+Capturas de Trello INICIAL Incremento 3
+
+![Captura Trello INICIAL1](./assets/img/InicioInc3.1.png)
+
+![Captura Trello INICIAL2](./assets/img/InicioInc3.2.png)
+
+Captura de Trello FINAL 
+
+![Captura Trello FINAL1 ](./assets/img/finalTr1.png)
+
+![Captura Trello FINAL2 ](./assets/img/finalTr2.png)
+
+![Captura Trello FINAL3 ](./assets/img/finalTr3.png)
+
+Historia de usuario 09
+
+![HISTORIA USUARIO 09.1 ](./assets/img/hu9.1.png)
+
+![HISTORIA USUARIO 09.2 ](./assets/img/hu9.2.png)
+
+![HISTORIA USUARIO 09.3 ](./assets/img/hu9.3.png)
+
+Historia de usuario 10
+![HISTORIA USUARIO 10 ](./assets/img/hu10nu.png)
+
+Historia de usuario 11
+![HISTORIA USUARIO 11 ](./assets/img/hu11.png)

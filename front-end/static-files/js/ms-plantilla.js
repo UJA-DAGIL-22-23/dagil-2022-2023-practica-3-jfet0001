@@ -369,10 +369,7 @@ Plantilla.recuperaBuscar = async function (callBackFn, nombre,tipo) {
     // Filtro el vector de personas para obtener solo la que tiene el nombre pasado como parámetro
     let vectorPersonas = null
     if (response) {
-        vectorPersonas = await response.json()
-        
-        var ruta="."+tipo
-        console.log(ruta)  
+        vectorPersonas = await response.json() 
         var filtro
         if(tipo=="nacionalidad"){
             filtro = vectorPersonas.data.filter(persona => persona.data.nacionalidad === nombre)
