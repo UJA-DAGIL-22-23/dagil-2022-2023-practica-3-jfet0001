@@ -395,6 +395,42 @@ Plantilla.recuperaBuscar = async function (callBackFn, nombre,tipo) {
     }
 }
 
+Plantilla.recuperaBuscaSimultaneo = async function (callBackFn, pesoEspada,sex,part,check) {
+    let response = null
+    //console.log(nombre);
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+    // Filtro el vector de personas para obtener solo la que tiene el nombre pasado como parámetro
+    let vectorPersonas = null
+    if (response) {
+        vectorPersonas = await response.json()
+        var filtro
+        if(check.checked){
+            filtro = vectorPersonas.data.filter(persona => persona.data.peso_espada >pesoEspada && persona.data.sexo === sex
+                && persona.data.participacionJJOO.length > part)
+        }else{
+            filtro = vectorPersonas.data.filter(persona => persona.data.peso_espada >pesoEspada || persona.data.sexo === sex
+                || persona.data.participacionJJOO.length > part)
+        }
+        
+        
+        //console.log(filtro)        
+        callBackFn(filtro)
+    }
+}
+
 Plantilla.listarBuscar = function (search,tipo) {
     this.recuperaBuscar(this.imprime,search,tipo);
+}
+
+Plantilla.listarBusquedaSimultanea = function (t1,t2,t3,check) {
+    this.recuperaBuscaSimultaneo(this.imprime,t1,t2,t3,check);
 }

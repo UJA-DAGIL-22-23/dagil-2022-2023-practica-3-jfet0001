@@ -34,7 +34,7 @@
             title="Llama a la ruta /procesarNombresOrdenados del MS Plantilla">Procesar Nombres Ordenados</a>
     </nav>
     <br></br>
-    <form>
+    <form class="formulario">
         <label>Buscar por nombre:</label>
         <input type="text" id="search" name="search">
         <button type="button" onclick="buscar()">Buscar</button>
@@ -46,6 +46,7 @@
           Plantilla.listarBuscar(searchTerm,tipo);
         }
       </script>
+      <br></br>
         <form class="formulario">
             <label>Buscar por nacionalidad:</label>
             <input type="text" id="nac" name="search">
@@ -86,6 +87,39 @@
             Plantilla.listarBuscar(searchTerm,tipo);
         }
         </script>
+
+    <form>
+        <h3>Búsqueda simultánea por varios campos</h3>
+        
+        <label for="pesoEspada">Peso minimo de espada:</label>
+        <input type="text" id="pesoEspada" name="pesoEspada">
+        
+        <br>
+        
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo">
+            <option value="masculino">masculino</option>
+            <option value="femenino">femenino</option>
+        </select>
+        
+        <br>
+        
+        <label for="part">Número minimo de participaciones en JJOO:</label>
+        <input type="number" id="part" name="part">
+        
+        <br>
+        <label><input type="checkbox" id="cbox1" value="check" name="comprobar"> Se tienen que cumplir todas</label><br>
+        <button type="button" onclick="busquedaSimultanea()">Buscar</button>
+    </form>
+    <script>
+        function busquedaSimultanea() {
+        var b1 = document.getElementById("pesoEspada").value;
+        var b2 = document.getElementById("sexo").value;
+        var b3 = document.getElementById("part").value;
+        var checkbox = document.getElementById("cbox1");
+        Plantilla.listarBusquedaSimultanea(b1,b2,b3,checkbox);
+    }
+    </script>
         
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 
