@@ -439,6 +439,8 @@ El código en ese repositorio muestra una aplicación similar, pero con mucha m�
 Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
 
 ## Seguimiento de la práctica
+
+Juan Francisco Escudero Toribio jfet0001@red.ujaen.es
 # Incremento 1
 En el incremento 1 se ha procedido a hacer tres historias de usuario, las cuales son:
 
@@ -511,3 +513,270 @@ Historia de usuario 10
 
 Historia de usuario 11
 ![HISTORIA USUARIO 11 ](./assets/img/hu11.png)
+
+Tablero Trello
+* [Tablero Trello](https://trello.com/b/Os0e22kj/practica3) ↗️
+
+Home Fauna
+![Home Fauna ](./assets/img/homeFauna.png)
+
+BBDD Fauna
+![BBDD Fauna ](./assets/img/bbdd.png)
+
+Coleccion Fauna
+![Coleccion Fauna ](./assets/img/coleccion.png)
+
+Documentos
+
+{
+  "ref": Ref(Collection("Esgrima"), "360272761264799949"),
+  "ts": 1679841729355000,
+  "data": {
+    "nombre": "Juan Francisco Escudero Toribio",
+    "fecha_nacimiento": {
+      "dia": 30,
+      "mes": 6,
+      "año": 2002
+    },
+    "nacionalidad": "español",
+    "peso": 80,
+    "altura": 196,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008
+    ],
+    "federado": true,
+    "peso_espada": 600,
+    "sexo": "masculino",
+    "victorias": 43
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360272862115791053"),
+  "ts": 1679841825510000,
+  "data": {
+    "nombre": "Jose Ruiz Torres",
+    "fecha_nacimiento": {
+      "dia": 23,
+      "mes": 6,
+      "año": 2000
+    },
+    "nacionalidad": "español",
+    "peso": 90,
+    "altura": 196,
+    "participacionJJOO": [
+      2006,
+      2008
+    ],
+    "federado": false,
+    "peso_espada": 550,
+    "sexo": "masculino",
+    "victorias": 10
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360273291039998157"),
+  "ts": 1679842234560000,
+  "data": {
+    "nombre": "Felipe Perez Galdon",
+    "fecha_nacimiento": {
+      "dia": 1,
+      "mes": 1,
+      "año": 1987
+    },
+    "nacionalidad": "argentino",
+    "peso": 75,
+    "altura": 176,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008,
+      2010
+    ],
+    "federado": true,
+    "peso_espada": 500,
+    "sexo": "masculino",
+    "victorias": 5
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360273429171011788"),
+  "ts": 1679842366295000,
+  "data": {
+    "nombre": "Luisa Jimenez Ramirez",
+    "fecha_nacimiento": {
+      "dia": 25,
+      "mes": 4,
+      "año": 2002
+    },
+    "nacionalidad": "español",
+    "peso": 60,
+    "altura": 167,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008,
+      2012,
+      2016
+    ],
+    "federado": false,
+    "peso_espada": 600,
+    "sexo": "femenino",
+    "victorias": 34
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360273614168129740"),
+  "ts": 1679842542720000,
+  "data": {
+    "nombre": "Lola Gomez Ruiz",
+    "fecha_nacimiento": {
+      "dia": 4,
+      "mes": 6,
+      "año": 2002
+    },
+    "nacionalidad": "español",
+    "peso": 70,
+    "altura": 180,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008
+    ],
+    "federado": false,
+    "peso_espada": 600,
+    "sexo": "femenino",
+    "victorias": 31
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360273810641912013"),
+  "ts": 1679842730100000,
+  "data": {
+    "nombre": "Pedro Lopez Gil",
+    "fecha_nacimiento": {
+      "dia": 29,
+      "mes": 6,
+      "año": 1988
+    },
+    "nacionalidad": "español",
+    "peso": 80,
+    "altura": 187,
+    "participacionJJOO": [
+      2002,
+      2006
+    ],
+    "federado": true,
+    "peso_espada": 600,
+    "sexo": "masculino",
+    "victorias": 100
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360274050451243213"),
+  "ts": 1679842958800000,
+  "data": {
+    "nombre": "Federico Rodriguez Garcia",
+    "fecha_nacimiento": {
+      "dia": 30,
+      "mes": 12,
+      "año": 2002
+    },
+    "nacionalidad": "español",
+    "peso": 65,
+    "altura": 170,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008,
+      2020
+    ],
+    "federado": false,
+    "peso_espada": 600,
+    "sexo": "masculino",
+    "victorias": 78
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360274105143918797"),
+  "ts": 1679843010960000,
+  "data": {
+    "nombre": "Rosa Lopez Ruiz",
+    "fecha_nacimiento": {
+      "dia": 30,
+      "mes": 6,
+      "año": 2003
+    },
+    "nacionalidad": "español",
+    "peso": 54,
+    "altura": 150,
+    "participacionJJOO": [
+      2002,
+      2008
+    ],
+    "federado": false,
+    "peso_espada": 400,
+    "sexo": "femenino",
+    "victorias": 4
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360274240492011725"),
+  "ts": 1679843140040000,
+  "data": {
+    "nombre": "Renato Tapia Torres",
+    "fecha_nacimiento": {
+      "dia": 30,
+      "mes": 9,
+      "año": 2000
+    },
+    "nacionalidad": "argentino",
+    "peso": 75,
+    "altura": 180,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008,
+      2014
+    ],
+    "federado": true,
+    "peso_espada": 650,
+    "sexo": "masculino",
+    "victorias": 50
+  }
+}
+
+{
+  "ref": Ref(Collection("Esgrima"), "360274414217986252"),
+  "ts": 1679843305720000,
+  "data": {
+    "nombre": "Seba Escudero Martinez",
+    "fecha_nacimiento": {
+      "dia": 25,
+      "mes": 6,
+      "año": 1999
+    },
+    "nacionalidad": "español",
+    "peso": 80,
+    "altura": 176,
+    "participacionJJOO": [
+      2002,
+      2006,
+      2008,
+      2010
+    ],
+    "federado": true,
+    "peso_espada": 660,
+    "sexo": "masculino",
+    "victorias": 67
+  }
+}
